@@ -18,7 +18,11 @@ namespace ExcelToPdf
                         $"{Path.GetFileNameWithoutExtension(excelFilePath)}.pdf");
 
                     // Set landscape page orientation.
-                    ((Microsoft.Office.Interop.Excel._Worksheet)thisFileWorkbook.ActiveSheet).PageSetup.Orientation = Microsoft.Office.Interop.Excel.XlPageOrientation.xlLandscape;
+                    var sheet = (Microsoft.Office.Interop.Excel._Worksheet)thisFileWorkbook.ActiveSheet;
+                    sheet.PageSetup.Orientation = Microsoft.Office.Interop.Excel.XlPageOrientation.xlLandscape;
+                    sheet.PageSetup.Zoom = false;
+                    sheet.PageSetup.FitToPagesWide = 1;
+                    sheet.PageSetup.FitToPagesTall = false;
 
                     thisFileWorkbook.ExportAsFixedFormat(
                         Microsoft.Office.Interop.Excel.XlFixedFormatType.xlTypePDF,
