@@ -17,7 +17,7 @@ namespace ExcelToPdf
         {
             // Each file I open is locked by the background EXCEL.exe until it is quitted
             ExcelApplication.Quit();
-            Marshal.ReleaseComObject(ExcelApplication);
+            Marshal.FinalReleaseComObject(ExcelApplication);
         }
     }
 }
